@@ -12,7 +12,7 @@ using namespace std;
 
 
 bool integerAndDataTypeValid(int, string);
-bool validTownName(string &);
+bool validTownName(const string &);
 
 class Pop
 {
@@ -31,7 +31,7 @@ class Pop
    void setPopulation(long p);  
    void setBirths(int b);
    void setDeaths(int d);
-   void setTownName(const string &s);
+   void setTownName(string);
 
   	// Accessors
    long getPopulation()         // getPopulation is not required by specs
@@ -109,7 +109,7 @@ void Pop::setDeaths(int d)
 *	Sets the town name as long as it's passed through   *
 *   bool function validTownName                         *
 ********************************************************/
-void Pop::setTownName(const string &s)
+void Pop::setTownName(string s)
 	{ townName = s; }
 
 //*********************** main ****************************
@@ -147,7 +147,7 @@ int main()
 		cout << "Enter annual number of deaths: ";
 		cin  >> numDeaths;
 	}while(!integerAndDataTypeValid(numDeaths, "Deathrate"));
-	myTown.setBirths(numDeaths);  
+	myTown.setDeaths(numDeaths);  
 	
 	// Display statistics for myTown
 	cout << "\nPopulation Statistics for " << myTown.getTownName() << "\n";         
