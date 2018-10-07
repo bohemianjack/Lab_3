@@ -10,10 +10,11 @@
 
 using namespace std;
 
-
+//Function Prototypes
 bool integerAndDataTypeValid(int, string);
 bool validTownName(const string &);
 
+//Class definition
 class Pop
 {
   private:
@@ -23,15 +24,18 @@ class Pop
 	string townName;   // City name variable
   
   public:
-	// Constructors
-   Pop();                       
-   Pop(long, int, int, string);
+   //Constructor                      
+   Pop();
    
 	// Mutators (i.e. "set" functions)
-   void setPopulation(long p);  
-   void setBirths(int b);
-   void setDeaths(int d);
-   void setTownName(string);
+   void setPopulation(long p)
+      { population = max(p, 2L); } //Defaut value = 2 
+   void setBirths(int b)
+      { numBirths = max(b, 0); } //Default value = 0
+   void setDeaths(int d)
+      { numDeaths = max(d, 0); } //Default value = 0
+   void setTownName(string s)
+	  { townName = s;}
 
   	// Accessors
    long getPopulation()         // getPopulation is not required by specs
@@ -45,73 +49,11 @@ class Pop
 };
 
 /********************************************************
- *                     Pop::Pop                         *
- * Population class default constructor                 *
- ********************************************************/ 
-Pop::Pop()
-{
-	population = 2;
-	numBirths  = 0;
-	numDeaths  = 0;
-
-}
-
-/********************************************************
  *                      Pop::Pop                        *
  * Population class constructor with 4 parameters       *
+ * Default parameters set at initialization             *
  ********************************************************/ 
-Pop::Pop(long p, int b, int d, string s)
-{
-	setPopulation(p);
-	setBirths(b);
-	setDeaths(d);
-	setTownName(s);
-}
-
-/********************************************************
- *                Pop::setPopulation                    *
- * Validates and sets the population.                   *
- ********************************************************/ 
-void Pop::setPopulation(long p)
-{
-	if (p >= 2)
-		population = p;
-	else
-		population = 2;       // Default value
-}
-
-/********************************************************
- *                    Pop::setBirths                    *
- * Validates and sets the annual number of births.      *
- ********************************************************/ 
-void Pop::setBirths(int b)
-{
-	if (b >= 0)
-		numBirths = b;
-	else
-		numBirths = 0;        // Default value
-}
-
-/********************************************************
- *                    Pop::setDeaths                    *
- * Validates and sets the annual number of deaths.      *
- ********************************************************/ 
-void Pop::setDeaths(int d)
-{
-	if (d >= 0)
-		numDeaths = d;
-	else
-		numDeaths = 0;        // Default value
-}
-
-/********************************************************
-* 					Pop::setTownName                    *
-*	Sets the town name as long as it's passed through   *
-*   bool function validTownName                         *
-********************************************************/
-void Pop::setTownName(string s)
-	{ townName = s; }
-
+Pop::Pop() : population(2), numBirths(0), numDeaths(0), townName("City"){};
 //*********************** main ****************************
 int main()
 {
